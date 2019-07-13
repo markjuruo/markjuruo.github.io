@@ -1296,8 +1296,45 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 markjuruo
-    	</div>
+			&copy; 2019 markjuruo | 
+			<span id="sitetime"></span>
+			<script language=javascript>
+				function siteTime(){
+					window.setTimeout("siteTime()", 1000);
+					var seconds = 1000;
+					var minutes = seconds * 60;
+					var hours = minutes * 60;
+					var days = hours * 24;
+					var years = days * 365;
+					var today = new Date();
+					var todayYear = today.getFullYear();
+					var todayMonth = today.getMonth()+1;
+					var todayDate = today.getDate();
+					var todayHour = today.getHours();
+					var todayMinute = today.getMinutes();
+					var todaySecond = today.getSeconds();
+					/* Date.UTC() -- Returns the number of milliseconds (timestamp) of the date object between midnight on January 1, 1970 and UTC
+					year - An integer between 0-11, which is the month of the date object
+					month - An integer between 0-11, which is the month of the date object
+					day - Integer between 1-31, the number of days as an date object
+					hours - An integer between 24:00 and 23 at midnight, as the number of hours for the date object
+					minutes - An integer between 0-59 and the number of minutes for the date object
+					seconds - An integer between 0-59, which is the number of seconds for a date object
+					microseconds - An integer between 0-999, which is the millisecond number of date objects */
+					var t1 = Date.UTC(2018,05,18,17,00,00); //Beijing time 2018-2-13 00:00:00
+					var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+					var diff = t2-t1;
+					var diffYears = Math.floor(diff/years);
+					var diffDays = Math.floor((diff/days)-diffYears*365);
+					var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+					var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+					var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+					document.getElementById("sitetime").innerHTML=" Website has run "+diffYears+" years "+diffDays+" days "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+				}/*Because the construction of the station is not yet a year, it will be commented out. 
+		You can cancel what you need.*/
+				siteTime();
+			</script>
+		</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
